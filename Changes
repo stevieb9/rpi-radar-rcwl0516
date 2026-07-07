@@ -2,3 +2,12 @@ Revision history for RPi-Radar-RCWL0516
 
 0.01 UNREL
     - Auto generated distribution with Dist::Mgr
+    - Added the OO Perl interface; pure Perl, with the GPIO transport
+      provided by RPi::Pin, loaded at runtime so non-Pi machines can
+      install and test the distribution
+    - Added motion(), wait_for_motion(), wait_for_clear(), poll() and pin()
+    - Added hardware-free parameter validation and mocked logic test suites
+    - Added examples/motion_poll.pl and examples/motion_interrupt.pl
+    - Added the TECHNICAL INFORMATION POD section with the RCWL-0516
+      datasheet specifications, pinout and wiring, output timing and
+      adjustment pad details

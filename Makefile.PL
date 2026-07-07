@@ -9,9 +9,22 @@ my %WriteMakefileArgs = (
     VERSION_FROM     => 'lib/RPi/Radar/RCWL0516.pm',
     ABSTRACT_FROM    => 'lib/RPi/Radar/RCWL0516.pm',
     LICENSE          => 'artistic_2',
+    PL_FILES         => {},
     MIN_PERL_VERSION => '5.006',
     META_MERGE => {
         'meta-spec' => { version => 2 },
+
+        # RPi::Pin rides on wiringPi, which only builds on the Pi; it's
+        # loaded at runtime and recommended here rather than required,
+        # so non-Pi machines can install and test this distribution
+
+        prereqs => {
+            runtime => {
+                recommends => {
+                    'RPi::Pin' => '3.1803',
+                },
+            },
+        },
         resources   => {
             repository => {
                 type => 'git',
@@ -30,8 +43,7 @@ my %WriteMakefileArgs = (
         'Test::More' => '0',
     },
     PREREQ_PM => {
-        #'ABC'              => '1.6',
-        #'Foo::Bar::Module' => '5.0401',
+        'Time::HiRes' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'RPi-Radar-RCWL0516-*' },
